@@ -1,5 +1,5 @@
 restartfile = 'restart.mat';
-initfile = '/scratch/y99/dkh157/mom/archive/age_g2/restart499/ocean_age.res.nc';
+initfile = '/scratch/xv83/dkh157/mom/archive/age_g2/restart499/ocean_age.res.nc';
 
 if isfile(restartfile)
     load(restartfile)

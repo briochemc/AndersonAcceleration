@@ -1,7 +1,7 @@
 function [gx, gv, vnorms, externalconv] = g_age(x, fetchOutput, iter)
 
 payudir = '/home/157/dkh157/mom/a15/age_g2';
-scratchdir = '/scratch/y99/dkh157/mom/archive/age_g2';
+scratchdir = '/scratch/xv83/dkh157/mom/archive/age_g2';
 
 outfile = fullfile(scratchdir, 'restart500', 'ocean_age.res.nc');
 infile = fullfile(scratchdir, 'restart499', 'ocean_age.res.nc');
@@ -21,7 +21,7 @@ else
     age_out3d(wet3d) = age_out;
     if iter == 0
         copyfile(infile, backup);
-    else 
+    else
         copyfile(outfile, backup);
         copyfile(outfile, infile);
 
