@@ -17,14 +17,14 @@ shortpath: /scratch/xv83
 laboratory: access-esm
 
 # BP: rename jobname here
-jobname: bibou
+jobname: aaargh3
 queue: normal
 
 # # BP: Modified wall time for 10 years of simulation with resubmission every 5 years
 # walltime: 10:00:00
 # BP: Modified wall time for debugging
 walltime: 03:30:00
-jobfs: 1500MB
+jobfs: 100GB
 
 # Modules for loading model executables
 modules:
@@ -145,7 +145,7 @@ calendar:
 runspersub: 2
 
 # Misc
-restart_freq: 2YS
+restart_freq: 1YS
 
 runlog: true
 manifest:

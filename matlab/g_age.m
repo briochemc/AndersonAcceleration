@@ -18,7 +18,10 @@ load(fullfile(inputdir, 'wet3d.mat'), 'wet3d');
 
 if fetchOutput
     fprintf('getting data from %s \n', outfile)
-    age3d = ncread(outfile,'age_global');
+    if ~isfile(outfile)
+        error("No more file there!")
+    end
+    age3d = ncread(outfile, 'age_global');
     gx = age3d(wet3d);
 else
     fprintf('submit model run for iter = %d\n', iter)

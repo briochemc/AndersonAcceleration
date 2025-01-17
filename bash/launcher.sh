@@ -22,7 +22,8 @@ payu --version
 # otherwise I just get in and checkout a new branch
 payudir=~/access-esm1.5/andersonacceleration_test
 cd ${payudir}
-payu checkout test3
+# payu checkout test4
+payu checkout -b test4ter
 
 # I then copy my ACCESS-ESM1.5 config file to the payu dir
 cp ~/Projects/AndersonAcceleration/payu/config.yaml ${payudir}/config.yaml
@@ -32,7 +33,7 @@ cp -r /g/data/vk83/configurations/inputs/access-esm1p5/modern/historical/restart
 
 # Clean up everything in the archive etc.
 # payu sweep
-payu sweep --hard # careful with that!
+# payu sweep --hard # careful with that!
 # Clean up the AArestart file
 rm /scratch/xv83/bp3051/AndersonAcceleration/AArestart.mat
 
