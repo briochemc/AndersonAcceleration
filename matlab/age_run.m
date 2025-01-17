@@ -1,16 +1,31 @@
-restartfile = 'restart.mat';
-initfile = '/scratch/xv83/dkh157/mom/archive/age_g2/restart499/ocean_age.res.nc';
+% BP: Modified restart.mat name (now AArestart.mat) and path to run this script from $HOME
+% AArestart contains all the data for the Anderson acceleration script
+% (This is **NOT** a restart file for the ACCESS model!)
+scratchdir = '/scratch/xv83/bp3051';
+inputdir = fullfile(scratchdir, 'AndersonAcceleration');
+AArestartfile = fullfile(inputdir, 'AArestart.mat');
 
-if isfile(restartfile)
-    load(restartfile)
+restartdir = fullfile(inputdir, 'restart');
+initfile = fullfile(restartdir, 'ocean/ocean_age.res.nc');
+
+if isfile(AArestartfile)
+    fprintf('Using AArestartfile %s\n', AArestartfile)
+    load(AArestartfile, 'aa');
 else
-    fprintf('start from %s\n', initfile)
-    load('wet3d.mat');
+    fprintf('Start from %s\n', initfile)
+    wet3dfile = fullfile(inputdir, 'wet3d.mat');
+    load(wet3dfile, 'wet3d');
     age3d = ncread(initfile, 'age_global');
     age_vec = age3d(wet3d);
     aa.x = age_vec;
 end
 
-histParams.ncheckpointfreq = -1;
-[xsol,iter,aa] = AndersonAcceleration(@g_age, aa.x, [], histParams, restartfile);
+% Anderson Acceleration parameters
+AAparams.mMax = 3; % number of AA stored residuals % CHECK does it need be small?
+AAparams.itmax = 4; % Number of AA iterates (if n-yr cycles this is n*itmax years)
+
+% Anderson Acceleration history parameters
+histParams.ncheckpointfreq = -1; % Turn off checkpoint saves
+
+[xsol, iter, aa] = AndersonAcceleration(@g_age, aa.x, AAparams, histParams, AArestartfile);
 

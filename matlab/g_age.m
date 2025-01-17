@@ -1,13 +1,20 @@
 function [gx, gv, vnorms, externalconv] = g_age(x, fetchOutput, iter)
 
-payudir = '/home/157/dkh157/mom/a15/age_g2';
-scratchdir = '/scratch/xv83/dkh157/mom/archive/age_g2';
+% BP: Modified paths
+payudir    = '/home/561/bp3051/access-esm1.5/andersonacceleration_test';
+archivedir = '/home/561/bp3051/access-esm1.5/andersonacceleration_test/archive';
+inputdir   = '/scratch/xv83/bp3051/AndersonAcceleration';
+restartdir = '/scratch/xv83/bp3051/AndersonAcceleration/restart';
 
-outfile = fullfile(scratchdir, 'restart500', 'ocean_age.res.nc');
-infile = fullfile(scratchdir, 'restart499', 'ocean_age.res.nc');
-age_outdir = fullfile(scratchdir, 'age_output');
+% BP: number of years per cycle. Modify to 10 to match 1850s age.
+yearspercycle = 2;
 
-load('wet3d.mat');
+outfile = fullfile(archivedir, sprintf('restart%03d', yearspercycle - 1), 'ocean', 'ocean_age.res.nc');
+infile = fullfile(restartdir, 'ocean', 'ocean_age.res.nc');
+age_outdir = fullfile(archivedir, 'age_output');
+system("mkdir -p " + age_outdir);
+
+load(fullfile(inputdir, 'wet3d.mat'), 'wet3d');
 
 if fetchOutput
     fprintf('getting data from %s \n', outfile)
@@ -32,12 +39,21 @@ else
         netcdf.close(ncid);
         ncwrite(infile, 'age_global', age_out3d);
     end
-    cd (scratchdir);
-    if exist('restart500')
-        !rm -r restart500 output500
+    cd (archivedir);
+    % if exist('restart001')
+    for year = 1:yearspercycle
+        % !rm -r restart001 output001
+        system(sprintf("rm -r restart%03d", year - 1));
+        system(sprintf("rm -r output%03d", year - 1));
     end
     cd (payudir);
-    !payu run -n 1
+    % CHECK that I run the right payu command here
+    !module use /g/data/vk83/modules
+    !module load payu
+    !module reload
+    !payu --version
+    !payu sweep
+    system(sprintf("payu run -n %i", yearspercycle));
 end
 
 vnorms = [];
