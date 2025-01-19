@@ -17,13 +17,11 @@ shortpath: /scratch/xv83
 laboratory: access-esm
 
 # BP: rename jobname here
-jobname: aaargh3
+jobname: age_n10
 queue: normal
 
 # # BP: Modified wall time for 10 years of simulation with resubmission every 5 years
-# walltime: 10:00:00
-# BP: Modified wall time for debugging
-walltime: 03:30:00
+walltime: 24:00:00
 jobfs: 100GB
 
 # Modules for loading model executables
@@ -142,7 +140,7 @@ calendar:
         days: 0
 
 # FIXME BP: resubmit every 1 year
-runspersub: 2
+runspersub: 10
 
 # Misc
 restart_freq: 1YS

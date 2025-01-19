@@ -7,7 +7,7 @@ inputdir   = '/scratch/xv83/bp3051/AndersonAcceleration';
 restartdir = '/scratch/xv83/bp3051/AndersonAcceleration/restart';
 
 % BP: number of years per cycle. Modify to 10 to match 1850s age.
-yearspercycle = 2;
+yearspercycle = 10;
 
 outfile = fullfile(archivedir, sprintf('restart%03d', yearspercycle - 1), 'ocean', 'ocean_age.res.nc');
 infile = fullfile(restartdir, 'ocean', 'ocean_age.res.nc');

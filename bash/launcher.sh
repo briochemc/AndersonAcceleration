@@ -23,7 +23,7 @@ payu --version
 payudir=~/access-esm1.5/andersonacceleration_test
 cd ${payudir}
 # payu checkout test4
-payu checkout -b test4ter
+payu checkout -b n10
 
 # I then copy my ACCESS-ESM1.5 config file to the payu dir
 cp ~/Projects/AndersonAcceleration/payu/config.yaml ${payudir}/config.yaml
@@ -38,7 +38,7 @@ cp -r /g/data/vk83/configurations/inputs/access-esm1p5/modern/historical/restart
 rm /scratch/xv83/bp3051/AndersonAcceleration/AArestart.mat
 
 # And start the whole Anderson Acceleration process by running the model
-# payu run -n 2
+# payu run -n 10
 # Alternatively, just start with do_anderson like David intended
 qsub ~/Projects/AndersonAcceleration/payu/do_anderson.sh
 
