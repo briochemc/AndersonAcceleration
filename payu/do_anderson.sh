@@ -14,19 +14,19 @@
 # So if there is a restart000 but no restart009, then abort
 archivedir=/home/561/bp3051/access-esm1.5/andersonacceleration_test/archive
 restart000=${archivedir}/restart000
-restart001=${archivedir}/restart001
+restart009=${archivedir}/restart009
 if [ ! -d $restart000 ]; then
   echo "No archive:"
   echo "  $restart000 does not exist"
 fi
-if [ -d $restart000 ] && [ ! -d $restart001 ]; then
+if [ -d $restart000 ] && [ ! -d $restart009 ]; then
   echo "Aborting because in middle of payu run cycle:"
   echo "  $restart000 exists"
-  echo "  but $restart001 does not exist"
+  echo "  but $restart009 does not exist"
   exit 1
 fi
 
-echo "  $restart001 exists"
+echo "  $restart009 exists"
 
 
 # 1. run `age_run.m`
