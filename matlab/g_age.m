@@ -57,7 +57,7 @@ else
     cd (payu_dir);
     % CHECK that I run the right payu command here
     !module use /g/data/vk83/modules
-    !module load payu
+    !module load payu/1.1.5
     !module reload
     !payu --version
     !payu sweep
