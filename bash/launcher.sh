@@ -31,6 +31,11 @@ cp ~/Projects/AndersonAcceleration/payu/config.yaml ${payudir}/config.yaml
 # Then I must ensure that the age can grow beyond the date (https://github.com/mom-ocean/MOM5/issues/400)
 sed -i "s/limit_age_tracer=.true./limit_age_tracer=.false./g" ${payudir}/ocean/input.nml
 
+# Other thing is I want the detailed output to be able to re-build the matrix
+cd ocean
+ln -sf diagnostic_profiles/diag_table_detailed diag_table
+cd ..
+
 # Copy default historical restart files into a directory that I can edit (so that I can update the 1850 Jan 1 age)
 cp -r /g/data/vk83/configurations/inputs/access-esm1p5/modern/historical/restart /scratch/xv83/bp3051/AndersonAcceleration/
 
