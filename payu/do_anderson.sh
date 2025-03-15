@@ -28,6 +28,11 @@ fi
 
 echo "  $restart009 exists"
 
+# Load payu here instead of inside MATLAB here
+module use /g/data/vk83/modules
+module load payu
+module reload
+payu --version
 
 # 1. run `age_run.m`
 

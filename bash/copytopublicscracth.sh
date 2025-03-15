@@ -7,13 +7,17 @@
 #PBS -l wd
 #PBS -l storage=scratch/xv83+scratch/public
 
-SHARE_DIR=/scratch/public/bp3051/
+SAVEDIR=/scratch/public/bp3051/crash3
+CONTROL_DIR=${SAVEDIR}/control
+WORK_DIR=${SAVEDIR}/work
+ARCHIVE_DIR=${SAVEDIR}/archive
 
-mkdir ${SHARE_DIR}
-rsync -a /scratch/xv83/bp3051/access-esm/archive/andersonacceleration_test-n10-5415f621/output007 ${SHARE_DIR}
-rsync -a /scratch/xv83/bp3051/access-esm/archive/andersonacceleration_test-n10-5415f621/restart007 ${SHARE_DIR}
-rsync -a /scratch/xv83/bp3051/access-esm/archive/andersonacceleration_test-n10-5415f621/restart008 ${SHARE_DIR}
-rsync -a /home/561/bp3051/access-esm1.5/andersonacceleration_test ${SHARE_DIR}
-rsync -a /scratch/xv83/bp3051/access-esm/work/andersonacceleration_test-n10-5415f621 ${SHARE_DIR}
+mkdir -p ${CONTROL_DIR}
+mkdir -p ${WORK_DIR}
+mkdir -p ${ARCHIVE_DIR}
 
-chmod -R +rx ${SHARE_DIR}
+rsync -a /home/561/bp3051/access-esm1.5/andersonacceleration_test ${CONTROL_DIR}
+rsync -a /scratch/xv83/bp3051/access-esm/work/andersonacceleration_test-n10-5415f621 ${WORK_DIR}
+rsync -a /scratch/xv83/bp3051/access-esm/archive/andersonacceleration_test-n10-5415f621 ${ARCHIVE_DIR}
+
+chmod -R +rx ${SAVEDIR}

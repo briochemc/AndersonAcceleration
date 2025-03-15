@@ -56,12 +56,18 @@ else
     end
     cd (payu_dir);
     % CHECK that I run the right payu command here
-    !module use /g/data/vk83/modules
-    !module load payu/1.1.5
-    !module reload
-    !payu --version
-    !payu sweep
+    % system("module use /g/data/vk83/modules")
+    % system("module load payu")
+    % system("module reload")
+    system("payu --version")
+    system("payu sweep")
     system(sprintf("payu run -n %i", yearspercycle));
+    % module use /g/data/vk83/modules
+    % module load payu
+    % module reload
+    % payu --version
+    % payu sweep
+    % payu run -n 10
 end
 
 vnorms = [];
