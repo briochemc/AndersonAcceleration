@@ -7,7 +7,7 @@
 #PBS -l wd
 #PBS -l storage=scratch/xv83
 
-SAVEDIR=/scratch/xv83/bp3051/crash3
+SAVEDIR=/scratch/xv83/bp3051/crash4
 CONTROL_DIR=${SAVEDIR}/control
 WORK_DIR=${SAVEDIR}/work
 ARCHIVE_DIR=${SAVEDIR}/archive

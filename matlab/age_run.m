@@ -22,7 +22,7 @@ end
 
 % Anderson Acceleration parameters
 AAparams.mMax = 10; % number of AA stored residuals % CHECK does it need be small?
-AAparams.itmax = 40; % Number of AA iterates (if n-yr cycles this is n*itmax years)
+AAparams.itmax = 50; % Number of AA iterates (if n-yr cycles this is n*itmax years)
 
 % Anderson Acceleration history parameters
 histParams.ncheckpointfreq = -1; % Turn off checkpoint saves
